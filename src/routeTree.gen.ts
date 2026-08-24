@@ -14,6 +14,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminBatchesRouteImport } from './routes/admin.batches'
+import { Route as AdminKmerdiasporaRouteImport } from './routes/admin.kmerdiaspora'
 import { Route as AdminMomoRouteImport } from './routes/admin.momo'
 import { Route as AdminPartnersRouteImport } from './routes/admin.partners'
 import { Route as AdminSettlementsRouteImport } from './routes/admin.settlements'
@@ -47,6 +48,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
 const AdminBatchesRoute = AdminBatchesRouteImport.update({
   id: '/batches',
   path: '/batches',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminKmerdiasporaRoute = AdminKmerdiasporaRouteImport.update({
+  id: '/kmerdiaspora',
+  path: '/kmerdiaspora',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminMomoRoute = AdminMomoRouteImport.update({
@@ -100,6 +106,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteWithChildren
   '/login': typeof LoginRoute
   '/admin/batches': typeof AdminBatchesRoute
+  '/admin/kmerdiaspora': typeof AdminKmerdiasporaRoute
   '/admin/momo': typeof AdminMomoRoute
   '/admin/partners': typeof AdminPartnersRoute
   '/admin/settlements': typeof AdminSettlementsRoute
@@ -115,6 +122,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/admin/batches': typeof AdminBatchesRoute
+  '/admin/kmerdiaspora': typeof AdminKmerdiasporaRoute
   '/admin/momo': typeof AdminMomoRoute
   '/admin/partners': typeof AdminPartnersRoute
   '/admin/settlements': typeof AdminSettlementsRoute
@@ -132,6 +140,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/login': typeof LoginRoute
   '/admin/batches': typeof AdminBatchesRoute
+  '/admin/kmerdiaspora': typeof AdminKmerdiasporaRoute
   '/admin/momo': typeof AdminMomoRoute
   '/admin/partners': typeof AdminPartnersRoute
   '/admin/settlements': typeof AdminSettlementsRoute
@@ -150,6 +159,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/login'
     | '/admin/batches'
+    | '/admin/kmerdiaspora'
     | '/admin/momo'
     | '/admin/partners'
     | '/admin/settlements'
@@ -165,6 +175,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/admin/batches'
+    | '/admin/kmerdiaspora'
     | '/admin/momo'
     | '/admin/partners'
     | '/admin/settlements'
@@ -181,6 +192,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/login'
     | '/admin/batches'
+    | '/admin/kmerdiaspora'
     | '/admin/momo'
     | '/admin/partners'
     | '/admin/settlements'
@@ -234,6 +246,13 @@ declare module '@tanstack/react-router' {
       path: '/batches'
       fullPath: '/admin/batches'
       preLoaderRoute: typeof AdminBatchesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/kmerdiaspora': {
+      id: '/admin/kmerdiaspora'
+      path: '/kmerdiaspora'
+      fullPath: '/admin/kmerdiaspora'
+      preLoaderRoute: typeof AdminKmerdiasporaRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/momo': {
@@ -304,6 +323,7 @@ declare module '@tanstack/react-router' {
 
 interface AdminRouteChildren {
   AdminBatchesRoute: typeof AdminBatchesRoute
+  AdminKmerdiasporaRoute: typeof AdminKmerdiasporaRoute
   AdminMomoRoute: typeof AdminMomoRoute
   AdminPartnersRoute: typeof AdminPartnersRoute
   AdminSettlementsRoute: typeof AdminSettlementsRoute
@@ -318,6 +338,7 @@ interface AdminRouteChildren {
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminBatchesRoute: AdminBatchesRoute,
+  AdminKmerdiasporaRoute: AdminKmerdiasporaRoute,
   AdminMomoRoute: AdminMomoRoute,
   AdminPartnersRoute: AdminPartnersRoute,
   AdminSettlementsRoute: AdminSettlementsRoute,
