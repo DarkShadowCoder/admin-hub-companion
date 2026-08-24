@@ -18,6 +18,7 @@ import { Route as AdminBatchesRouteImport } from './routes/admin.batches'
 import { Route as AdminKmerdiasporaRouteImport } from './routes/admin.kmerdiaspora'
 import { Route as AdminMomoRouteImport } from './routes/admin.momo'
 import { Route as AdminPartnersRouteImport } from './routes/admin.partners'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminSettlementsRouteImport } from './routes/admin.settlements'
 import { Route as AdminTariffsRouteImport } from './routes/admin.tariffs'
 import { Route as AdminWalletsRouteImport } from './routes/admin.wallets'
@@ -71,6 +72,11 @@ const AdminPartnersRoute = AdminPartnersRouteImport.update({
   path: '/partners',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminSettlementsRoute = AdminSettlementsRouteImport.update({
   id: '/settlements',
   path: '/settlements',
@@ -116,6 +122,7 @@ export interface FileRoutesByFullPath {
   '/admin/kmerdiaspora': typeof AdminKmerdiasporaRoute
   '/admin/momo': typeof AdminMomoRoute
   '/admin/partners': typeof AdminPartnersRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/settlements': typeof AdminSettlementsRoute
   '/admin/tariffs': typeof AdminTariffsRoute
   '/admin/wallets': typeof AdminWalletsRoute
@@ -133,6 +140,7 @@ export interface FileRoutesByTo {
   '/admin/kmerdiaspora': typeof AdminKmerdiasporaRoute
   '/admin/momo': typeof AdminMomoRoute
   '/admin/partners': typeof AdminPartnersRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/settlements': typeof AdminSettlementsRoute
   '/admin/tariffs': typeof AdminTariffsRoute
   '/admin/wallets': typeof AdminWalletsRoute
@@ -152,6 +160,7 @@ export interface FileRoutesById {
   '/admin/kmerdiaspora': typeof AdminKmerdiasporaRoute
   '/admin/momo': typeof AdminMomoRoute
   '/admin/partners': typeof AdminPartnersRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/settlements': typeof AdminSettlementsRoute
   '/admin/tariffs': typeof AdminTariffsRoute
   '/admin/wallets': typeof AdminWalletsRoute
@@ -172,6 +181,7 @@ export interface FileRouteTypes {
     | '/admin/kmerdiaspora'
     | '/admin/momo'
     | '/admin/partners'
+    | '/admin/settings'
     | '/admin/settlements'
     | '/admin/tariffs'
     | '/admin/wallets'
@@ -189,6 +199,7 @@ export interface FileRouteTypes {
     | '/admin/kmerdiaspora'
     | '/admin/momo'
     | '/admin/partners'
+    | '/admin/settings'
     | '/admin/settlements'
     | '/admin/tariffs'
     | '/admin/wallets'
@@ -207,6 +218,7 @@ export interface FileRouteTypes {
     | '/admin/kmerdiaspora'
     | '/admin/momo'
     | '/admin/partners'
+    | '/admin/settings'
     | '/admin/settlements'
     | '/admin/tariffs'
     | '/admin/wallets'
@@ -288,6 +300,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminPartnersRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/settlements': {
       id: '/admin/settlements'
       path: '/settlements'
@@ -346,6 +365,7 @@ interface AdminRouteChildren {
   AdminKmerdiasporaRoute: typeof AdminKmerdiasporaRoute
   AdminMomoRoute: typeof AdminMomoRoute
   AdminPartnersRoute: typeof AdminPartnersRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
   AdminSettlementsRoute: typeof AdminSettlementsRoute
   AdminTariffsRoute: typeof AdminTariffsRoute
   AdminWalletsRoute: typeof AdminWalletsRoute
@@ -362,6 +382,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminKmerdiasporaRoute: AdminKmerdiasporaRoute,
   AdminMomoRoute: AdminMomoRoute,
   AdminPartnersRoute: AdminPartnersRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
   AdminSettlementsRoute: AdminSettlementsRoute,
   AdminTariffsRoute: AdminTariffsRoute,
   AdminWalletsRoute: AdminWalletsRoute,
