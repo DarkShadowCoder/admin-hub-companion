@@ -16,6 +16,7 @@ import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminMomoRouteImport } from './routes/admin.momo'
 import { Route as AdminPartnersRouteImport } from './routes/admin.partners'
 import { Route as AdminSettlementsRouteImport } from './routes/admin.settlements'
+import { Route as AdminTariffsRouteImport } from './routes/admin.tariffs'
 import { Route as AdminWalletsRouteImport } from './routes/admin.wallets'
 import { Route as AdminTransactionsIndexRouteImport } from './routes/admin.transactions.index'
 import { Route as AdminTransactionsIdRouteImport } from './routes/admin.transactions.$id'
@@ -57,6 +58,11 @@ const AdminSettlementsRoute = AdminSettlementsRouteImport.update({
   path: '/settlements',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminTariffsRoute = AdminTariffsRouteImport.update({
+  id: '/tariffs',
+  path: '/tariffs',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminWalletsRoute = AdminWalletsRouteImport.update({
   id: '/wallets',
   path: '/wallets',
@@ -90,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/admin/momo': typeof AdminMomoRoute
   '/admin/partners': typeof AdminPartnersRoute
   '/admin/settlements': typeof AdminSettlementsRoute
+  '/admin/tariffs': typeof AdminTariffsRoute
   '/admin/wallets': typeof AdminWalletsRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/transactions/$id': typeof AdminTransactionsIdRoute
@@ -103,6 +110,7 @@ export interface FileRoutesByTo {
   '/admin/momo': typeof AdminMomoRoute
   '/admin/partners': typeof AdminPartnersRoute
   '/admin/settlements': typeof AdminSettlementsRoute
+  '/admin/tariffs': typeof AdminTariffsRoute
   '/admin/wallets': typeof AdminWalletsRoute
   '/admin': typeof AdminIndexRoute
   '/admin/transactions/$id': typeof AdminTransactionsIdRoute
@@ -118,6 +126,7 @@ export interface FileRoutesById {
   '/admin/momo': typeof AdminMomoRoute
   '/admin/partners': typeof AdminPartnersRoute
   '/admin/settlements': typeof AdminSettlementsRoute
+  '/admin/tariffs': typeof AdminTariffsRoute
   '/admin/wallets': typeof AdminWalletsRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/transactions/$id': typeof AdminTransactionsIdRoute
@@ -134,6 +143,7 @@ export interface FileRouteTypes {
     | '/admin/momo'
     | '/admin/partners'
     | '/admin/settlements'
+    | '/admin/tariffs'
     | '/admin/wallets'
     | '/admin/'
     | '/admin/transactions/$id'
@@ -147,6 +157,7 @@ export interface FileRouteTypes {
     | '/admin/momo'
     | '/admin/partners'
     | '/admin/settlements'
+    | '/admin/tariffs'
     | '/admin/wallets'
     | '/admin'
     | '/admin/transactions/$id'
@@ -161,6 +172,7 @@ export interface FileRouteTypes {
     | '/admin/momo'
     | '/admin/partners'
     | '/admin/settlements'
+    | '/admin/tariffs'
     | '/admin/wallets'
     | '/admin/'
     | '/admin/transactions/$id'
@@ -226,6 +238,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminSettlementsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/tariffs': {
+      id: '/admin/tariffs'
+      path: '/tariffs'
+      fullPath: '/admin/tariffs'
+      preLoaderRoute: typeof AdminTariffsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/wallets': {
       id: '/admin/wallets'
       path: '/wallets'
@@ -268,6 +287,7 @@ interface AdminRouteChildren {
   AdminMomoRoute: typeof AdminMomoRoute
   AdminPartnersRoute: typeof AdminPartnersRoute
   AdminSettlementsRoute: typeof AdminSettlementsRoute
+  AdminTariffsRoute: typeof AdminTariffsRoute
   AdminWalletsRoute: typeof AdminWalletsRoute
   AdminIndexRoute: typeof AdminIndexRoute
   AdminTransactionsIdRoute: typeof AdminTransactionsIdRoute
@@ -280,6 +300,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminMomoRoute: AdminMomoRoute,
   AdminPartnersRoute: AdminPartnersRoute,
   AdminSettlementsRoute: AdminSettlementsRoute,
+  AdminTariffsRoute: AdminTariffsRoute,
   AdminWalletsRoute: AdminWalletsRoute,
   AdminIndexRoute: AdminIndexRoute,
   AdminTransactionsIdRoute: AdminTransactionsIdRoute,
