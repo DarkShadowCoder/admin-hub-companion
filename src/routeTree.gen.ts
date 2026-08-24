@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminAuditRouteImport } from './routes/admin.audit'
 import { Route as AdminBatchesRouteImport } from './routes/admin.batches'
 import { Route as AdminKmerdiasporaRouteImport } from './routes/admin.kmerdiaspora'
 import { Route as AdminMomoRouteImport } from './routes/admin.momo'
@@ -43,6 +44,11 @@ const LoginRoute = LoginRouteImport.update({
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAuditRoute = AdminAuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminBatchesRoute = AdminBatchesRouteImport.update({
@@ -105,6 +111,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/login': typeof LoginRoute
+  '/admin/audit': typeof AdminAuditRoute
   '/admin/batches': typeof AdminBatchesRoute
   '/admin/kmerdiaspora': typeof AdminKmerdiasporaRoute
   '/admin/momo': typeof AdminMomoRoute
@@ -121,6 +128,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/admin/audit': typeof AdminAuditRoute
   '/admin/batches': typeof AdminBatchesRoute
   '/admin/kmerdiaspora': typeof AdminKmerdiasporaRoute
   '/admin/momo': typeof AdminMomoRoute
@@ -139,6 +147,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/login': typeof LoginRoute
+  '/admin/audit': typeof AdminAuditRoute
   '/admin/batches': typeof AdminBatchesRoute
   '/admin/kmerdiaspora': typeof AdminKmerdiasporaRoute
   '/admin/momo': typeof AdminMomoRoute
@@ -158,6 +167,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/login'
+    | '/admin/audit'
     | '/admin/batches'
     | '/admin/kmerdiaspora'
     | '/admin/momo'
@@ -174,6 +184,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/login'
+    | '/admin/audit'
     | '/admin/batches'
     | '/admin/kmerdiaspora'
     | '/admin/momo'
@@ -191,6 +202,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/login'
+    | '/admin/audit'
     | '/admin/batches'
     | '/admin/kmerdiaspora'
     | '/admin/momo'
@@ -239,6 +251,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/audit': {
+      id: '/admin/audit'
+      path: '/audit'
+      fullPath: '/admin/audit'
+      preLoaderRoute: typeof AdminAuditRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/batches': {
@@ -322,6 +341,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminRouteChildren {
+  AdminAuditRoute: typeof AdminAuditRoute
   AdminBatchesRoute: typeof AdminBatchesRoute
   AdminKmerdiasporaRoute: typeof AdminKmerdiasporaRoute
   AdminMomoRoute: typeof AdminMomoRoute
@@ -337,6 +357,7 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminAuditRoute: AdminAuditRoute,
   AdminBatchesRoute: AdminBatchesRoute,
   AdminKmerdiasporaRoute: AdminKmerdiasporaRoute,
   AdminMomoRoute: AdminMomoRoute,
